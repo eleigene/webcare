@@ -14,7 +14,7 @@ if ($result_categories && mysqli_num_rows($result_categories) > 0) {
     echo "Error fetching categories: " . mysqli_error($con);
 }
 
-// Close the category result set asdasdadasdasdg
+// Close the category result set
 mysqli_free_result($result_categories);
 
 // Fetch articles if category ID is provided in the URL
