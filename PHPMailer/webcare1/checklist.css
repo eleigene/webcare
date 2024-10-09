@@ -1,0 +1,91 @@
+.cd1{
+    background-color:#FFFFFF;
+    position: absolute;
+    top: 200px;
+    left: 210px;
+    width: 1100px;
+    height: 2000px;
+    box-shadow: 0 4px 8px rgba(0, 0.2, 0.2, 0.3);
+    border-radius: 40px;
+}
+body{
+    background-color: #F5F7F5;
+}
+.ci1{
+    position: absolute;
+    width: 1110px;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    font-family: 'Poppins', sans-serif;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 135px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 1378px; /* Adjust left position */
+    top: 65px; /* Adjust top position */
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.p1 {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 10px; /* Adjust top position */
+    left: 1450px; /* Adjust left position */
+}
+
+.p img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-name {
+    margin-right: 10px;
+}
+.ci2{
+    position: absolute;
+    top: 155px;
+    left: 0px;
+}
+.ci3{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.cp1{
+    position: absolute;
+    top: 680px;
+    left: 50px;
+    text-align: left;
+    margin-right: 50px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #325343;
+}
+
+.checkboxes{
+    position:relative;
+    top:   200px;
+    left:210px;     
+}

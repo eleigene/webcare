@@ -1,0 +1,148 @@
+.slideshow-container {
+    position: absolute;
+    top: 73px;
+    left: 0px;
+    width: 100%;
+    height: 600px; /* Adjusted height */
+    overflow: hidden;
+    margin: 0 auto; /* Centering the slideshow horizontally */
+}
+
+.mySlides {
+    display: none;
+    text-align: center; /* Center images horizontally */
+    opacity: 0; /* Start with slides invisible */
+    transition: opacity 1.5s; /* Smooth transition effect */
+}
+
+.mySlides img {
+    max-width: 100%; /* Ensure images maintain their aspect ratio */
+    height: 600px; /* Set height to match container height */
+    object-fit: cover; /* Maintain aspect ratio and cover entire container */
+}
+
+.active-slide {
+    opacity: 1; /* Make the active slide visible */
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px; /* Adjust margin for spacing */
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    font-family: 'Poppins', sans-serif;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 135px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 1400px; /* Adjust left position */
+    top: 50px; /* Adjust top position */
+}
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: -5px; /* Adjust top position */
+    left: 1450px; /* Adjust left position */
+}
+
+.profile img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-name {
+    margin-right: 10px;
+}
+
+.alldot {
+    position: absolute;
+    bottom: 10px; /* Adjust bottom position */
+    width: 100%;
+    text-align: center;
+}
+.uhd3{
+    background-color: #325343;
+    position: absolute;
+    top: 673px;
+    left: 0px;
+    height: 500px;
+    width: 100%;
+}
+.uhp1{
+    font-family: 'Abril Fatface' , sans-serif;
+    font-size: 70px;
+    position: absolute;
+    top: 30px;
+    left: 600px;
+    color: white
+}
+.uhp2{
+    position: absolute;
+    top: 210px;
+    left: 50px;
+    text-align: center;
+    margin-right: 50px;
+    font-family: 'Alice', sans-serif;
+    font-size: 30px;
+    color: white;
+}

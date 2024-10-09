@@ -1,0 +1,415 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    background-color: #FFFCF6;
+}
+
+/* Header Styles */
+.hd1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #FFFCF6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+.ht1{
+    font-family: 'Raleway' , sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    left: 1340px;
+    text-decoration: none;
+    color: black;
+}
+.ht2{
+    font-family: 'Raleway' , sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    left: 1190px;
+    text-decoration: none;
+    color: black;
+}
+.ht3{
+    font-family: 'Raleway' , sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    left: 1115px;
+    text-decoration: none;
+    color: black;
+}
+.ht4{
+    font-family: 'Raleway' , sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    left: 1035px;
+    text-decoration: none;
+    color: black;
+}
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.hb1 {
+    font-family: 'Poppins' , sans-serif;
+    height: 45px;
+    width: 90px;
+    background-color: #397A4A; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 5px 10px; /* Padding */
+    font-size: 18px; /* Increase font size */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    position: absolute;
+    top: 13px;
+    left: 1420px;
+}
+
+.hb1:hover {
+    background-color: #315242; /* Darker blue on hover */
+}
+/* Divider */
+.hd2 {
+    position:absolute;
+    margin-top: 70px;
+    margin-left: 0px;
+    height: 3px;
+    width: 100%;
+    background-color: #A6A6A6;
+}
+
+/* Section Styles */
+.hd3{
+    height: 600px;
+    width: 100%;
+    position: absolute;
+    top: 73px;
+    left: 0px;
+    background-color: #FFFCF6;
+}
+.hi1{
+    height: 580px;
+    width: 580px;
+    position: absolute;
+    top: 50px;
+    left: 830px;
+}
+.hi2{
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    top: 50px;
+    left: 120px;
+}
+.hd5{
+    height: 1350px;
+    width: 100%;
+    position: absolute;
+    top: 1320px;
+    left: 0px;
+    background-color: #F5F7F5;
+}
+.hp2{
+    font-family: 'Paytone One' , sans-serif;
+    font-size: 50px;
+    position: absolute;
+    top: 25px;
+    left: 590px;
+    text-decoration: none;
+    color: black;
+}
+.hi3{
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    top: 50px;
+    left: 485px;
+}
+.hi4{
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    top: 450px;
+    left: 480px;
+}
+.hi5{
+    height: 502px;
+    width: 600px;
+    position: absolute;
+    top: 850px;
+    left: 480px;
+}
+
+/* Green Section */
+.hd4{
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    top: 820px;
+    left: 0px;
+    background-color: #325343;
+}
+.acontent {
+    display: flex;
+    gap: 80px; /* Adjust the space between the articles as needed */
+    justify-content: flex-start; /* Align items to the start (left) */
+    margin-left: 160px; /* Adjust this value to move articles more to the left */
+    margin-top: 120px; /* Adjust the top margin as needed */
+}
+
+.ph1{
+    font-family: 'Seymour One' , sans-serif;
+    font-size: 50px;
+    position: absolute;
+    top: 25px;
+    left: 400px;
+    text-decoration: none;
+    color: white;
+}
+
+.hb2 {
+    font-family: 'Kalam', sans-serif;
+    height: 35px;
+    width: 150px;
+    background-color: #325343; /* Blue background */
+    border: 1px solid white; /* Add white border */
+    color: white; /* White text */
+    padding: 5px 10px; /* Padding */
+    font-size: 18px; /* Increase font size */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    position: absolute;
+    top: 430px;
+    left: 700px;
+    text-decoration: none;
+    text-align: center;
+}
+.hp2 {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.abox {
+    height: 280px;
+    width: 350px;
+    background-color: #FFFCF6;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    padding: 5px; /* Increase padding to move content up */
+    text-align: center;
+}
+
+.atitle {
+    color: #064927;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 32px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    padding: 0; /* Reset padding */
+}
+
+.learn {
+    font-family: 'Nanum Myeongjo', sans-serif;
+    text-decoration: none;
+    color: #397A4A; /* Adjust link color */
+    font-size: 23px; /* Adjust font size */
+    display: inline-block; /* Ensure it aligns next to the title */
+    margin-top: auto; /* Pushes the link to the bottom */
+    margin-bottom: 20px; /* Adjust bottom margin if needed */
+    background-color: #709E7A;
+    color: black;
+    padding: 10px 30px;
+    border-radius: 30px;
+}
+
+.learn:hover {
+    background-color: #397A4A;
+    color: white;
+}
+
+/* Footer */
+.ad3 {
+    width: 100%;
+    padding: 50px 20px;
+    background-color: #F5F7F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.ap1{
+    font-family: 'Freeman' , sans-serif;
+    font-size: 50px;
+    position: absolute;
+    top: 80px;
+    left: 700px;
+    text-decoration: none;
+    color: black;
+}
+.ai1{
+    height:440px;
+    width: 440px;
+    position: absolute;
+    top: 150px;
+    left: 900px;
+}
+.ai2{
+    height:600px;
+    width: 600px;
+    position: absolute;
+    top: 70px;
+    left: 160px;
+}
+.ad2{
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    top: 673px;
+    left: 0px;
+    background-color: #325343;
+}
+.ai3{
+    height:500px;
+    width: 500px;
+    position: absolute;
+    top: 0px;
+    left: 150px;
+}
+.ap2{
+    font-family: 'Freeman' , sans-serif;
+    font-size: 50px;
+    position: absolute;
+    top:50px;
+    left: 750px;
+    text-decoration: none;
+    color: white;
+}
+.ai4{
+    height:483px;
+    width: 550px;
+    position: absolute;
+    top: 0px;
+    left: 750px;
+}
+.ad3{
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    top: 1173px;
+    left: 0px;
+    background-color: #F5F7F5;
+}
+.ai5{
+    height:440px;
+    width: 440px;
+    position: absolute;
+    top:40px;
+    left: 900px;
+}
+.ap3{
+    font-family: 'Freeman' , sans-serif;
+    font-size: 50px;
+    position: absolute;
+    top:70px;
+    left: 520px;
+    text-decoration: none;
+    color: black;
+}
+.ai6{
+    height:500px;
+    width: 600px;
+    position: absolute;
+    top: -50px;
+    left: 130px;
+}
+.ap3 {
+    font-family: 'Freeman', sans-serif;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .hd1 {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 10px;
+        position:relative;
+        right:700px;
+
+    }
+
+    .hb1 {
+        align-self: flex-end;
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hd1 {
+        padding: 10px;
+    }
+
+    .nav-links {
+        width: 100%;
+        gap: 5px;
+    }
+
+    .hb1 {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+}
