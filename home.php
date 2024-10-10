@@ -2,8 +2,7 @@
 session_start(); // Start or resume session
 include "connection.php"; // Include your database connection file
 if (isset($_SESSION['login_success'])) {
-    echo "<script>alert('You have successfully logged in!');</script>";
-    // Unset the session variable so the alert doesn't show again on refresh
+
     unset($_SESSION['login_success']);
 }
 
@@ -212,10 +211,10 @@ mysqli_close($con);
         <input type="text" name="email" placeholder="Email Address" required>
 </div>
 <div class="field">
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Password" required minlength="6">
 </div>
 <div class="field">
-        <input type="password" name="cpassword" placeholder="Confirm password" required>
+        <input type="password" name="cpassword" placeholder="Confirm password" required minlength="6">
 </div>
 		<?php
 			if(isset($alert)){

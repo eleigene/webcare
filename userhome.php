@@ -2,12 +2,11 @@
 include("connection.php");
 session_start();
 if (!isset($_SESSION['auth_user'])) {
-    echo "<script>alert('Please log in first.'); window.location.href = 'home.php';</script>";
+    
     exit(); // Ensure that the rest of the page does not load
 }
 if (isset($_SESSION['login_success'])) {
-    echo "<script>alert('" . $_SESSION['login_success'] . "');</script>";
-    // Unset the session variable after showing the alert
+    
     unset($_SESSION['login_success']);
 }
 $userID = $_SESSION['auth_user']['UserName'];
@@ -100,7 +99,6 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                 <i class="arrow-down"></i>
             </div>
             <div class="dropdown-content" id="dropdownContent">
-                <a href="profile.php">View Profile</a>
                 <a href="settings.php">Settings</a>
                 <a href="logout.php">Logout</a>
             </div>

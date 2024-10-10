@@ -2,7 +2,6 @@
 include("connection.php");
 session_start();
 if (!isset($_SESSION['auth_user'])) {
-    echo "<script>alert('Please log in first.'); window.location.href = 'home.php';</script>";
     exit(); // Ensure that the rest of the page does not load
 }
 $userID = $_SESSION['auth_user']['UserName'];
@@ -376,9 +375,9 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
         <p class="asp10">Current Password</p>
         <input type="password" name="cpass" class="cpass">
         <p class="asp11">New Password</p>
-        <input type="password" name="npass" class="npass">
+        <input type="password" name="npass" class="npass" required minlength="6">
         <p class="asp12">Confirm New Password</p>
-        <input type="password" name="ccpass" class="ccpass">
+        <input type="password" name="ccpass" class="ccpass" required minlength="6">
         <input type="submit" name="submit1" value="SAVE" class="asbut3">
     </form>
 </div>

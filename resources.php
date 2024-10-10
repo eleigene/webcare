@@ -2,7 +2,6 @@
 include("connection.php");
 session_start();
 if (!isset($_SESSION['auth_user'])) {
-    echo "<script>alert('Please log in first.'); window.location.href = 'home.php';</script>";
     exit(); // Ensure that the rest of the page does not load
 }
 
@@ -33,6 +32,34 @@ if ($result_categories && mysqli_num_rows($result_categories) > 0) {
 
 mysqli_close($con);
 ?>
+<?php
+include("connection.php");
+session_start();
+if (!isset($_SESSION['auth_user'])) {
+    
+    exit(); // Ensure that the rest of the page does not load
+}
+if (isset($_SESSION['login_success'])) {
+    
+    unset($_SESSION['login_success']);
+}
+$userID = $_SESSION['auth_user']['UserName'];
+$userid = $_SESSION['auth_user']['ID']; // Fixed typo
+
+// Fetch the logged-in user's data
+$sql1 = "SELECT * FROM user WHERE userid ='$userid'";
+$result1 = mysqli_query($con, $sql1);
+
+if ($result1 && mysqli_num_rows($result1) > 0) {
+    // Fetch the data if available
+    while ($rows = mysqli_fetch_assoc($result1)) {
+        $first1 = $rows['username'];
+        $two1 = $rows['email'];
+        $six1 = $rows['profile'];
+    }
+    
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,11 +89,12 @@ mysqli_close($con);
         <a href="userhome.php" class="ht4">Home</a>
         <div class="dropdown">
             <div class="profile" onclick="toggleDropdown()">
-                <img class="profile1" src="images/profile.jpg" alt="Profile Picture" width="50" height="50" style="border:1px solid black">
+            <img class="profile1" src="<?php echo htmlspecialchars($six1); ?>" width="50" height="50" style="border:1px solid black" width="50" 
+     height="50" 
+     style="border:1px solid black">
                 <i class="arrow-down"></i>
             </div>
             <div class="dropdown-content" id="dropdownContent">
-                <a href="profile.php">View Profile</a>
                 <a href="settings.php">Settings</a>
                 <a href="logout.php">Logout</a>
             </div>
