@@ -24,7 +24,7 @@ def get_data():
 def submit():
     selected_symptoms = request.json['symptoms']
     
-    # Filter the DataFrame based on the selected symptoms
+    # Filter the DataFrame based on the selected symptoms !
     matched_data = df[df['symptom'].isin(selected_symptoms)]
     
     if not matched_data.empty:
