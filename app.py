@@ -31,7 +31,7 @@ def submit():
         # Find the most frequent condition (mode) based on the symptoms
         condition = matched_data['condition'].mode().iloc[0]
 
-        # Now filter the rows that exactly match this condition sdafdsfsdfsdfsdfsdfsd
+        # Now filter the rows that exactly match this condition
         exact_row = matched_data[matched_data['condition'] == condition].iloc[0]
 
         # Extract the disorder and intervention from the same row

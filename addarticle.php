@@ -19,7 +19,7 @@
     <img src="logo.png" class="logo">
     <span class="logo_name">WebCare</span>
     </div>
-      <ul class="nav-links">
+    <ul class="nav-links">
         <li>
           <a href="dashboard.php">
             <i class='bx bxs-dashboard'></i>
@@ -39,32 +39,20 @@
           </a>
         </li>
         <li>
+        <a href="admin-setting.php">
+            <i class='bx bx-log-out' ></i>
+            <span class="links_name">Setting</span>
+          </a>
         </li>
+        
         <li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-        </li>
-		<li>
-          <a href="#">
+        <a href="logout.php">
             <i class='bx bx-log-out' ></i>
             <span class="links_name">Log out</span>
           </a>
         </li>
       </ul>
+
   </div>
   <section class="home-section">
     <nav>

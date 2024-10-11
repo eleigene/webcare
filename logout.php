@@ -12,7 +12,7 @@
     }
     session_destroy();
     echo "<script>
-            alert('Logging out');
+           
             window.location.href='home.php';
             
           </script>";
