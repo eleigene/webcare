@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from fuzzywuzzy import process
 import pandas as pd
 
 app = Flask(__name__)
@@ -61,11 +62,23 @@ def chat():
     return jsonify({"reply": response})
 
 def generate_response(message):
-    for index, row in responses.iterrows():
-        input_text = row['input'].strip().lower()
-        if input_text in message.lower():
-            return row['response']
-    return "I'm sorry, I don't understand that."
+    # Define a threshold score for similarity (e.g., 70)
+    threshold = 80
+    
+    # Get the closest match to the user message in the 'input' column of the responses DataFrame
+    possible_inputs = responses['input'].str.strip().str.lower().tolist()
+    closest_match, score = process.extractOne(message.lower(), possible_inputs)
+
+    # Check if the score meets the threshold
+    if score >= threshold:
+        # Find the response associated with the closest match
+        response_row = responses[responses['input'].str.strip().str.lower() == closest_match]
+        return response_row['response'].iloc[0]
+    else:
+        # Default response if no close match is found
+        return "I'm sorry, I don't understand that."
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
