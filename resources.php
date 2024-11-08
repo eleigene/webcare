@@ -34,13 +34,12 @@ mysqli_close($con);
 ?>
 <?php
 include("connection.php");
-session_start();
 if (!isset($_SESSION['auth_user'])) {
-    
+
     exit(); // Ensure that the rest of the page does not load
 }
 if (isset($_SESSION['login_success'])) {
-    
+
     unset($_SESSION['login_success']);
 }
 $userID = $_SESSION['auth_user']['UserName'];
@@ -57,18 +56,21 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
         $two1 = $rows['email'];
         $six1 = $rows['profile'];
     }
-    
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="userhome.css">
-    <link rel="stylesheet" href="resources.css">
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="home.css"> -->
+    <!-- <link rel="stylesheet" href="userhome.css"> -->
+    <!-- <link rel="stylesheet" href="resources.css"> -->
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Seymour+One' rel='stylesheet'>
@@ -79,57 +81,130 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
     <link href='https://fonts.googleapis.com/css?family=Fraunces' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
     <title>Resources</title>
-</head>
-<body>
-    <div class="hd1">
-        <img class="logo" src="logo.png" alt="Logo">
-        <a href="resources.php" class="ht1">Resources</a>
-        <a href="userhome.php#asd" class="ht2">What We Offer</a>
-        <a href="userhome.php#abt" class="ht3">About</a>
-        <a href="userhome.php" class="ht4">Home</a>
-        <div class="dropdown">
-            <div class="profile" onclick="toggleDropdown()">
-            <img class="profile1" src="<?php echo htmlspecialchars($six1); ?>" width="50" height="50" style="border:1px solid black" width="50" 
-     height="50" 
-     style="border:1px solid black">
-                <i class="arrow-down"></i>
-            </div>
-            <div class="dropdown-content" id="dropdownContent">
-                <a href="settings.php">Settings</a>
-                <a href="logout.php">Logout</a>
-            </div>
-        </div>
-    </div>
-    <div class="hd2"></div>
-    <div class="rt1">Self Help Articles</div>
-    <div class="rt2">Category</div>
-    <div class="rcd1">
-    <div class="content">
-        <div class="hmm"><a href="resources.php" style="color: black; text-decoration: none">All</a></div>
-        <?php 
-        $topPosition = 50; // Initial top position
-        foreach ($categories as $category): ?>
-            <div class="hello" style="top: <?= $topPosition ?>px;">
-                <a href="categpath.php?categoryid=<?= htmlspecialchars($category['categoryid']) ?>" style="color: black; text-decoration: none;"><?= htmlspecialchars($category['name']) ?></a>
-            </div>
-            <?php $topPosition += 50; // Increment the top position ?>
-        <?php endforeach; ?>
-    </div>
-</div>
 
-<div class="content">
-    <?php if (count($articles) > 0): ?>
-        <?php foreach ($articles as $article): ?>
-            <div class="box">
-                <img class="image" src="<?= htmlspecialchars($article['picture']) ?>">
-                <div class="title"><?= htmlspecialchars($article['title']) ?></div>
-                <a class="link" href="redirect.php?articleid=<?= $article['articleid'] ?>&url=<?= urlencode($article['link']) ?>">Read More<i class='bx bx-right-arrow-alt'></i></a>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+        }
+
+        .logo {
+            width: 50px;
+            /* Adjust as needed */
+            height: auto;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+        }
+
+
+        .dropdown-center {
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            #profileDropdownLinks {
+                position: absolute;
+                left: -100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contrainer-fluid p-0 m-0">
+        <!-- RESPONSIVE NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-5 shadow">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" width="50" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse flex justify-content-end" id="navbarNav">
+                <ul class="navbar-nav text-center d-flex justify-content-center align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="userhome.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userhome.php">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userhome.php">What We Offer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources.php">Resources</a>
+                    </li>
+                    <!-- User Profile Dropdown -->
+                    <div class="dropdown-center">
+                        <div class="mx-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="rounded-5" src="<?php echo htmlspecialchars($six1); ?>" width="40" height="40">
+                        </div>
+                        <ul class="dropdown-menu" id="profileDropdownLinks">
+                            <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        </ul>
+                    </div>
+
+                </ul>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No articles found.</p>
-    <?php endif; ?>
-</div>
+        </nav>
+
+        <!-- SECTION -->
+        <div class="container-fluid">
+            <p class="text-center fs-2 fw-bold text-success mt-4">Self Help Articles</p>
+            <div class="container d-flex flex-column">
+                <div class="d-flex flex-wrap justify-content-start align-items-center gap-2">
+                    <p class="fs-4 fw-semibold mt-2 pt-2">Categories: </p>
+                    <?php
+                    foreach ($categories as $category): ?>
+                        <a class="btn btn-outline-success btn-sm" href="categpath.php?categoryid=<?= htmlspecialchars($category['categoryid']) ?>"><?= htmlspecialchars($category['name']) ?></a>
+                        <?php
+                        ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div class="container">
+                <?php if (count($articles) > 0): ?>
+                    <div class="row">
+                        <?php foreach ($articles as $article): ?>
+                            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="<?= htmlspecialchars($article['picture']) ?>" class="object-fit-cover border w-100" style="height: 200px;">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title"><?= htmlspecialchars($article['title']) ?></h5>
+                                        <a href="redirect.php?articleid=<?= $article['articleid'] ?>&url=<?= urlencode($article['link']) ?>" class="btn btn-success btn-sm mt-auto">
+                                            Read More <i class='bx bx-right-arrow-alt'></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <p>No articles found.</p>
+                <?php endif; ?>
+            </div>
+
+        </div>
+
+    </div>
+
 
 
     <script>
@@ -154,5 +229,8 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
             }
         }
     </script>
+    <!-- Bootstrap 5.3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
