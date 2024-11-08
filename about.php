@@ -6,19 +6,19 @@ include "connection.php"; // Include your database connection file
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
-    
+
     $login_query = "SELECT * FROM user WHERE username='$username' AND password='$password' LIMIT 1";
     $login_result = mysqli_query($con, $login_query);
-    
+
     if (mysqli_num_rows($login_result) == 1) {
         $row = mysqli_fetch_assoc($login_result);
         $_SESSION['authenticated'] = true;
         $_SESSION['auth_user'] = [
-            'ID' => $row['userid'], 
-            'UserName' => $row['username'], 
-            'Email' => $row['email'], 
-            'Password' => $row['password'], 
-            'ProfilePic' => $row['profile'], 
+            'ID' => $row['userid'],
+            'UserName' => $row['username'],
+            'Email' => $row['email'],
+            'Password' => $row['password'],
+            'ProfilePic' => $row['profile'],
             'Status' => $row['verify_status']
         ];
         mysqli_close($con);
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-    
+
     // Validate if passwords match
     if ($password != $cpassword) {
         $_SESSION['last_modal'] = "signup";
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
         // Check if username or email already exists
         $check_user_query = "SELECT * FROM user WHERE username='$username' OR email='$email'";
         $check_user_result = mysqli_query($con, $check_user_query);
-        
+
         if (mysqli_num_rows($check_user_result) > 0) {
             $_SESSION['last_modal'] = "signup";
             $_SESSION['error'] = "Username or Email already exists.";
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
             }
         }
     }
-    
+
     mysqli_close($con);
     header("Location: home.php");
     exit();
@@ -84,169 +84,184 @@ if ($topArticlesResult && mysqli_num_rows($topArticlesResult) > 0) {
 mysqli_close($con);
 ?>
 <html>
+
 <head>
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="loginreg.css">
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Freeman' rel='stylesheet'>
+    <style>
+        /* Additional styles specific to this page if needed */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+        }
+
+        .logo {
+            width: 50px;
+            /* Adjust as needed */
+            height: auto;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="hd1">
-        <img class="logo" src="logo.png">
-        <a href="javascript:void(0);" class="ht1" id="openLoginModal">Sign in</a>
-        <a href="home.php#asd" class="ht2">What We Offer</a>
-        <a href="about.php" class="ht3">About</a>
-        <a href="home.php" class="ht4">Home</a>
-        <button class="hb1" id="openSignupModal">Register</button>
-        <div class="hd2"></div>
-    </div>
-    <div class="ad1">
-        <p class="ap1">ABOUT US</p>
-        <img class="ai1" src="images/image3.png">
-        <img class="ai2" src="images/image4.png">
-    </div>
-    <div class="ad2">
-        <img class="ai3" src="images/image5.png">
-        <p class="ap2">OUR MISSION</p>
-        <img class="ai4" src="images/image6.png">
-    </div>
-    <div class="ad3">
-        <img class="ai5" src="images/image7.png">
-        <p class="ap3">OUR VISION</p>
-        <img class="ai6" src="images/image8.png">
-    </div>
+    <div class="container-fluid p-0 m-0">
+        <!-- RESPONSIVE NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 shadow-sm">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" width="50" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <!-- Login Modal -->
-      <div class="modal" id="loginModal" style="display: <?php echo isset($_SESSION['error']) && $_SESSION['last_modal'] === "login" ? 'flex' : 'none'; ?>;">
-        <div class="modal-content">
-            <span class="close" id="closeLoginModal">&times;</span>
-            <div class="wrapper">
-                <div class="title-text">
-                    <div class="title login">Login Form</div>
-                </div>
-                <div class="form-container">
-                    <div class="form-inner">
-                        <form class="login" method="POST" action="loginabout.php">
-                            <div class="field">
-                                <input type="text" name="username" placeholder="Username" required>
-                            </div>
-                            <div class="field">
-                                <input type="password" name="password" placeholder="Password" required>
-                            </div>
-                            <div class="pass-link">
-                                <a href="#" class="fp">Forgot password?</a>
-                            </div>
-                            <div class="field btn">
-                                <div class="btn-layer"></div>
-                                <input type="submit" name="submit" value="Login">
-                            </div>
-                            <div class="signup-link">
-                                Don't have an account? <a href="" id="openSignupFromLogin">Signup now</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Error message display -->
-                <?php if (isset($_SESSION['error']) && $_SESSION['last_modal'] === "login"): ?>
-                    <div class="error-message"><?php echo $_SESSION['error']; ?></div>
-                    <?php unset($_SESSION['error']); ?>
-                <?php endif; ?> 
+
+            <div class="collapse navbar-collapse flex justify-content-end" id="navbarNav">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.php">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#asd">What We Offer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#login_Modal" id="openLoginModal">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-success ml-lg-2" data-bs-toggle="modal" data-bs-target="#register_Modal" id="openSignupModal">Register</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <p class="text-center fs-2 fw-bold text-success py-2 mt-3">ABOUT US</p>
+            <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 overflow-hidden">
+                <img class="img-fluid" src="images/image3.png">
+                <img class="img-fluid" src="images/image4.png">
             </div>
         </div>
-    </div>
 
-   <!-- Signup Modal -->
-   <div class="modal" id="signupModal" style="display: <?php echo isset($_SESSION['error']) && $_SESSION['last_modal'] === "signup" ? 'flex' : 'none'; ?>;">
-        <div class="modal-content">
-            <span class="close" id="closeSignupModal">&times;</span>
-            <div class="wrapper">
-                <div class="title-text">
-                    <div class="title signup">Signup Form</div>
-                </div>
-                <div class="form-container">
-                    <div class="form-inner">
-                        <form action="loginabout.php" class="signup" method="POST">
-                            <div class="field">
-                                <input type="text" name="username" placeholder="Username" required>
-                            </div>
-                            <div class="field">
-                                <input type="text" name="email" placeholder="Email Address" required>
-                            </div>
-                            <div class="field">
-                                <input type="password" name="password" placeholder="Password" required>
-                            </div>
-                            <div class="field">
-                                <input type="password" name="cpassword" placeholder="Confirm password" required>
-                            </div>
-                            <div class="field btn">
-                                <div class="btn-layer"></div>
-                                <input type="submit" name="signup_submit" value="Signup">
-                            </div>
-                            <div class="login-link">
-                                Already have an account? <a href="" id="openLoginFromSignup">Login now</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Error message display -->
-                <?php if (isset($_SESSION['error']) && $_SESSION['last_modal'] === "signup"): ?>
-                    <div class="error-message"><?php echo $_SESSION['error']; ?></div>
-                    <?php unset($_SESSION['error']); ?>
-                <?php endif; ?> 
+        <div class="container-fluid bg-success-subtle">
+            <p class="text-center fs-2 fw-bold text-success pt-4">OUR MISSION</p>
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 overflow-hidden py-4">
+                <img class="img-fluid" src="images/image5.png">
+                <img class="img-fluid" src="images/image6.png">
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="container-fluid">
+            <p class="text-center fs-2 fw-bold text-success pt-4">OUR VISION</p>
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 overflow-hidden py-4">
+                <img class="img-fluid" src="images/image7.png">
+                <img class="img-fluid" src="images/image8.png">
             </div>
         </div>
     </div>
 
 
-    <script>
-        const loginModal = document.getElementById("loginModal");
-        const signupModal = document.getElementById("signupModal");
-        const openLoginModal = document.getElementById("openLoginModal");
-        const openSignupModal = document.getElementById("openSignupModal");
-        const closeLoginModal = document.getElementById("closeLoginModal");
-        const closeSignupModal = document.getElementById("closeSignupModal");
-        const openSignupFromLogin = document.getElementById("openSignupFromLogin");
-        const openLoginFromSignup = document.getElementById("openLoginFromSignup");
+    <!-- Login Modal -->
+    <div class="modal fade" id="login_Modal" tabindex="-1" aria-labelledby="login_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="login" method="POST" action="loginabout.php">
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="text-end">
+                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-success w-100 mt-3">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Signup now</a>
+                    </div>
+                    <!-- Error message display -->
+                    <?php if (isset($_SESSION['error']) && $_SESSION['last_modal'] === "login"): ?>
+                        <div class="error-message"><?php echo $_SESSION['error']; ?></div>
+                        <?php unset($_SESSION['error']); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        openLoginModal.onclick = () => {
-            loginModal.style.display = "flex";
-            signupModal.style.display = "none";
-        };
+    <!-- Signup Modal -->
+    <div class="modal fade" id="register_Modal" tabindex="-1" aria-labelledby="register_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Signup Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="text" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="password" name="password" placeholder="Password" required minlength="6">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required minlength="6">
+                        </div>
+                        <?php
+                        if (isset($alert)) {
+                            foreach ($alert as $alert) {
+                                echo '<div class="alert">' . $alert . '</div>';
+                            }
+                        }
+                        ?>
 
-        openSignupModal.onclick = () => {
-            signupModal.style.display = "flex";
-            loginModal.style.display = "none";
-        };
-
-        closeLoginModal.onclick = () => {
-            loginModal.style.display = "none";
-        };
-
-        closeSignupModal.onclick = () => {
-            signupModal.style.display = "none";
-        };
-
-        window.onclick = (event) => {
-            if (event.target == loginModal) {
-                loginModal.style.display = "none";
-            }
-            if (event.target == signupModal) {
-                signupModal.style.display = "none";
-            }
-        };
-
-        openSignupFromLogin.onclick = (event) => {
-            event.preventDefault();
-            loginModal.style.display = "none";
-            signupModal.style.display = "flex";
-        };
-
-        openLoginFromSignup.onclick = (event) => {
-            event.preventDefault();
-            signupModal.style.display = "none";
-            loginModal.style.display = "flex";
-        };
-    </script>
+                        <button type="submit" name="submit" class="btn btn-success w-100 mt-3" formaction="email.php">Register</button>
+                        <div class="mt-4 text-center">
+                            Already have an account? <a href="" id="openLoginFromSignup">Login now</a>
+                        </div>
+                    </form>
+                    <!-- Error message display -->
+                    <?php if (isset($_SESSION['error']) && $_SESSION['last_modal'] === "signup"): ?>
+                        <div class="error-message"><?php echo $_SESSION['error']; ?></div>
+                        <?php unset($_SESSION['error']); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap 5.3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
