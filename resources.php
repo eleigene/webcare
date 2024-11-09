@@ -167,9 +167,10 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
         <!-- SECTION -->
         <div class="container-fluid">
             <p class="text-center fs-2 fw-bold text-success mt-4">Self Help Articles</p>
-            <div class="container d-flex flex-column">
+            <div class="container d-flex flex-column mb-3">
                 <div class="d-flex flex-wrap justify-content-start align-items-center gap-2">
                     <p class="fs-4 fw-semibold mt-2 pt-2">Categories: </p>
+                    <a class="btn btn-outline-success btn-sm"  href="resources.php">All</a>
                     <?php
                     foreach ($categories as $category): ?>
                         <a class="btn btn-outline-success btn-sm" href="categpath.php?categoryid=<?= htmlspecialchars($category['categoryid']) ?>"><?= htmlspecialchars($category['name']) ?></a>
@@ -178,7 +179,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                     <?php endforeach; ?>
                 </div>
             </div>
-
+            <!-- Cards -->
             <div class="container">
                 <?php if (count($articles) > 0): ?>
                     <div class="row">
