@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="userhome.css">
@@ -106,13 +107,23 @@
         }
 
         @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
-            from {transform: translateY(50px);}
-            to {transform: translateY(0);}
+            from {
+                transform: translateY(50px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
         }
 
         /* Additional Styles for Modal Content */
@@ -136,6 +147,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="hd1">
         <img class="logo" src="logo.png" alt="Logo">
@@ -202,7 +214,7 @@
 
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:5000/get_data');
+                const response = await fetch('https://webcare-chatbot.onrender.com/get_data');
                 const data = await response.json();
                 populateCheckboxes(data);
             } catch (error) {
@@ -224,21 +236,23 @@
             const checkboxes = form.querySelectorAll('input[name="symptom"]:checked');
             const symptoms = Array.from(checkboxes).map(cb => cb.value);
 
-            fetch('http://localhost:5000/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ symptoms })
-            })
-            .then(response => response.json())
-            .then(result => {
-                const modal = document.getElementById("myModal");
-                const modalResults = document.getElementById("modalResults");
-                modalResults.innerHTML = `<p><span>Condition:</span> ${result.condition}</p><p><span>Disorder:</span> ${result.disorder}</p><p><span>Intervention:</span> ${result.intervention}</p>`;
-                modal.style.display = "block";
-            })
-            .catch(error => console.error('Error processing data:', error));
+            fetch('https://webcare-chatbot.onrender.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        symptoms
+                    })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    const modal = document.getElementById("myModal");
+                    const modalResults = document.getElementById("modalResults");
+                    modalResults.innerHTML = `<p><span>Condition:</span> ${result.condition}</p><p><span>Disorder:</span> ${result.disorder}</p><p><span>Intervention:</span> ${result.intervention}</p>`;
+                    modal.style.display = "block";
+                })
+                .catch(error => console.error('Error processing data:', error));
         }
 
         function closeModal() {
@@ -249,4 +263,5 @@
         document.addEventListener('DOMContentLoaded', fetchData);
     </script>
 </body>
+
 </html>
