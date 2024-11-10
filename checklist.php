@@ -171,7 +171,7 @@
         // Load Checkbox Lists
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:5000/get_data');
+                const response = await fetch('https://webcare-chatbot.onrender.com/get_data');
                 const data = await response.json();
                 symptomsData = data;
                 updateCheckboxes();
@@ -256,7 +256,7 @@
         //     const checkboxes = form.querySelectorAll('input[name="symptom"]:checked');
         //     const symptoms = Array.from(checkboxes).map(cb => cb.value);
 
-        //     fetch('http://localhost:5000/submit', {
+        //     fetch('https://webcare-chatbot.onrender.com/submit', {
         //             method: 'POST',
         //             headers: {
         //                 'Content-Type': 'application/json'
@@ -280,7 +280,7 @@
             const checkboxes = form.querySelectorAll('input[name="symptom"]:checked');
             const symptoms = Array.from(checkboxes).map(cb => cb.value);
 
-            fetch('http://localhost:5000/submit', {
+            fetch('https://webcare-chatbot.onrender.com/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
