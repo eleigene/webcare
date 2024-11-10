@@ -143,7 +143,7 @@ mysqli_close($con);
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#asd">What We Offer</a>
+                        <a class="nav-link" href="home.php#asd">What We Offer</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#login_Modal" id="openLoginModal">Sign in</a>
