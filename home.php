@@ -212,7 +212,7 @@ mysqli_close($con);
 
         <!-- 4TH SECTION -->
         <div class="container">
-            <p class="text-center fs-2 fw-bold text-success mt-4">What We Offer</p>
+            <p class="text-center fs-2 fw-bold text-success mt-4" id="asd">What We Offer</p>
             <div class="d-flex flex-column justify-content-center align-items-center overflow-hidden">
                 <img class=" border-primary img-fluid" src="images/wwo1.png">
                 <img class=" border-primary img-fluid" src="images/wwo2.png">
