@@ -148,7 +148,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
                         <a class="nav-link" href="userhome.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
+                        <a class="nav-link" href="#abt">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#asd">What We Offer</a>
