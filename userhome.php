@@ -224,7 +224,7 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
         </div>
 
         <!-- FLOATING ICONS -->
-        <a href="http://127.0.0.1:5000/" class="float-button">
+        <a href="https://webcare-chatbot.onrender.com" class="float-button">
             <img src="images/m1.png">
         </a>
         <a href="checklist.php" class="float-button1">
