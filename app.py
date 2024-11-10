@@ -51,7 +51,7 @@ def submit():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.php')
 
 @app.route('/chat', methods=['POST'])
 def chat():
