@@ -10,7 +10,7 @@ if (strpos($_SERVER['DOCUMENT_ROOT'], 'xampp') !== false) {
 	// Hostinger (live server) environment settings
 	$host = "localhost"; // Usually 'localhost' on Hostinger
 	$username = "u671054248_webcaredb"; // Hostinger database username
-	$password = "your_database_password"; // Hostinger database password
+	$password = "7v92H5WoKG"; // Hostinger database password
 	$database = "u671054248_webcaredb"; // Hostinger database name
 }
 
