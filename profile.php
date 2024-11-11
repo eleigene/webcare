@@ -29,78 +29,81 @@ if ($result1 && mysqli_num_rows($result1) > 0) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account View</title>
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
+        /* Additional styles specific to this page if needed */
+        * {
             padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        html {
+            scroll-behavior: smooth;
         }
-        h1 {
-            text-align: center;
-            color: #333;
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
         }
-        .account-info {
-            margin-top: 20px;
-            padding: 10px;
+
+        .logo {
+            width: 50px;
+            /* Adjust as needed */
+            height: auto;
         }
-        .account-info p {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 10px;
+
+        .navbar-nav .nav-link {
+            font-size: 1rem;
         }
-        .account-info span {
-            font-weight: bold;
-            color: #333;
+
+        .fieldsContainer {
+            width: 100%;
+            margin: 0 auto;
         }
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            background-color: #007bff;
-            cursor: pointer;
-        }
-        .btn:hover {
-            opacity: 0.9;
+
+        @media (min-width: 768px) {
+            .fieldsContainer {
+                width: 50%;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Account Details</h1>
+    <div class="container-fluid vh-100 m-0 p-0">
+        <div class="bg-success-subtle text-success text-center fs-1 fw-bold py-4">Account Details</div>
+        <div class="container mt-4 rounded-3">
+            <img src="<?php echo htmlspecialchars($six1); ?>" width="300" height="250" class="rounded mx-auto mb-4 d-block border shadow-sm object-fit-cover">
 
-    <div class="account-info">
-        <p class="asp6">Username: <?php echo htmlspecialchars($first1); ?></p>
-        <p class="asp6">Email: <?php echo htmlspecialchars($two1); ?></p>
-        
-        <img src="<?php echo htmlspecialchars($six1); ?>" 
- 
-             style="width: 50px; height: 50px; border-radius: 50%; margin-left: 10px;">
+            <div class="fieldsContainer mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input class="form-control" type="text" placeholder="Disabled input" id="username" name="username" aria-label="Disabled input example" disabled value="<?php echo htmlspecialchars($first1); ?>">
+            </div>
+
+            <div class="fieldsContainer mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" type="text" placeholder="Disabled input" id="email" name="email" aria-label="Disabled input example" disabled value="<?php echo htmlspecialchars($two1); ?>">
+            </div>
+
+
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-success" onclick="window.location.href='settings.php'">Edit Account</button>
+            </div>
+        </div>
     </div>
 
-    <div class="btn-container">
-        <button class="btn" onclick="window.location.href='settings.php'">Edit Account</button>
-    </div>
-</div>
-
+    <!-- Bootstrap 5.3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
