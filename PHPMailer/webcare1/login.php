@@ -18,20 +18,20 @@ if (isset($_POST['submit'])) {
             if ($row['verify_status'] == "Verify") {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['auth_user'] = [
-                    'ID' => $row['userid'], 
-                    'UserName' => $row['username'], 
-                    'Email' => $row['email'], 
-                    'Password' => $row['password'], 
-                    'ProfilePic' => $row['profile'], 
+                    'ID' => $row['userid'],
+                    'UserName' => $row['username'],
+                    'Email' => $row['email'],
+                    'Password' => $row['password'],
+                    'ProfilePic' => $row['profile'],
                     'Status' => $row['verify_status']
                 ];
-                
-                header("Location: userhome.php");
+
+                header("Location: userindex.php");
                 exit();
             } else {
                 $_SESSION['last_modal'] = "login";
                 $_SESSION['error'] = "Please verify your email address in order to access your account.";
-                header("Location: home.php");
+                header("Location: index.php");
                 exit();
             }
         } elseif (mysqli_num_rows($login_admin_query_run) > 0) {
@@ -42,14 +42,13 @@ if (isset($_POST['submit'])) {
         } else {
             $_SESSION['last_modal'] = "login";
             $_SESSION['error'] = "Incorrect username or password.";
-            header("Location: home.php");
+            header("Location: index.php");
             exit();
         }
     } else {
         $_SESSION['last_modal'] = "login";
         $_SESSION['error'] = "Please fill out all the fields.";
-        header("Location: home.php");
+        header("Location: index.php");
         exit();
     }
 }
-?>

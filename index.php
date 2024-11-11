@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
     }
 
     mysqli_close($con);
-    header("Location: home.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -154,7 +154,7 @@ mysqli_close($con);
             <div class="collapse navbar-collapse flex justify-content-end" id="navbarNav">
                 <ul class="navbar-nav text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">About</a>

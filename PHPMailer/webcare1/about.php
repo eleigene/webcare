@@ -6,23 +6,23 @@ include "connection.php"; // Include your database connection file
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
-    
+
     $login_query = "SELECT * FROM user WHERE username='$username' AND password='$password' LIMIT 1";
     $login_result = mysqli_query($con, $login_query);
-    
+
     if (mysqli_num_rows($login_result) == 1) {
         $row = mysqli_fetch_assoc($login_result);
         $_SESSION['authenticated'] = true;
         $_SESSION['auth_user'] = [
-            'ID' => $row['userid'], 
-            'UserName' => $row['username'], 
-            'Email' => $row['email'], 
-            'Password' => $row['password'], 
-            'ProfilePic' => $row['profile'], 
+            'ID' => $row['userid'],
+            'UserName' => $row['username'],
+            'Email' => $row['email'],
+            'Password' => $row['password'],
+            'ProfilePic' => $row['profile'],
             'Status' => $row['verify_status']
         ];
         mysqli_close($con);
-        header("Location: userhome.php");
+        header("Location: userindex.php");
         exit();
     } else {
         $_SESSION['last_modal'] = "login";
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-    
+
     // Validate if passwords match
     if ($password != $cpassword) {
         $_SESSION['last_modal'] = "signup";
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
         // Check if username or email already exists
         $check_user_query = "SELECT * FROM user WHERE username='$username' OR email='$email'";
         $check_user_result = mysqli_query($con, $check_user_query);
-        
+
         if (mysqli_num_rows($check_user_result) > 0) {
             $_SESSION['last_modal'] = "signup";
             $_SESSION['error'] = "Username or Email already exists.";
@@ -61,9 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup_submit'])) {
             }
         }
     }
-    
+
     mysqli_close($con);
-    header("Location: home.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -84,6 +84,7 @@ if ($topArticlesResult && mysqli_num_rows($topArticlesResult) > 0) {
 mysqli_close($con);
 ?>
 <html>
+
 <head>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="loginreg.css">
@@ -91,13 +92,14 @@ mysqli_close($con);
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Freeman' rel='stylesheet'>
 </head>
+
 <body>
     <div class="hd1">
         <img class="logo" src="logo.png">
         <a href="javascript:void(0);" class="ht1" id="openLoginModal">Sign in</a>
-        <a href="home.php#asd" class="ht2">What We Offer</a>
+        <a href="index.php#asd" class="ht2">What We Offer</a>
         <a href="about.php" class="ht3">About</a>
-        <a href="home.php" class="ht4">Home</a>
+        <a href="index.php" class="ht4">Home</a>
         <button class="hb1" id="openSignupModal">Register</button>
     </div>
     <div class="hd2"></div>
@@ -117,8 +119,8 @@ mysqli_close($con);
         <img class="ai6" src="images/image8.png">
     </div>
 
-      <!-- Login Modal -->
-      <div class="modal" id="loginModal" style="display: <?php echo isset($_SESSION['error']) && $_SESSION['last_modal'] === "login" ? 'flex' : 'none'; ?>;">
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal" style="display: <?php echo isset($_SESSION['error']) && $_SESSION['last_modal'] === "login" ? 'flex' : 'none'; ?>;">
         <div class="modal-content">
             <span class="close" id="closeLoginModal">&times;</span>
             <div class="wrapper">
@@ -151,13 +153,13 @@ mysqli_close($con);
                 <?php if (isset($_SESSION['error']) && $_SESSION['last_modal'] === "login"): ?>
                     <div class="error-message"><?php echo $_SESSION['error']; ?></div>
                     <?php unset($_SESSION['error']); ?>
-                <?php endif; ?> 
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
-   <!-- Signup Modal -->
-   <div class="modal" id="signupModal" style="display: <?php echo isset($_SESSION['error']) && $_SESSION['last_modal'] === "signup" ? 'flex' : 'none'; ?>;">
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal" style="display: <?php echo isset($_SESSION['error']) && $_SESSION['last_modal'] === "signup" ? 'flex' : 'none'; ?>;">
         <div class="modal-content">
             <span class="close" id="closeSignupModal">&times;</span>
             <div class="wrapper">
@@ -193,7 +195,7 @@ mysqli_close($con);
                 <?php if (isset($_SESSION['error']) && $_SESSION['last_modal'] === "signup"): ?>
                     <div class="error-message"><?php echo $_SESSION['error']; ?></div>
                     <?php unset($_SESSION['error']); ?>
-                <?php endif; ?> 
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -249,4 +251,5 @@ mysqli_close($con);
         };
     </script>
 </body>
+
 </html>
