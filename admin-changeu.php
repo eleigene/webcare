@@ -1,7 +1,6 @@
 <?php
+include "connection.php";
 session_start();
-include "connect.php";
-
 $userId = $_SESSION['auth_user']['ID'];
 $current_password = $_SESSION['auth_user']['Password'];
 

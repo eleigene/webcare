@@ -1,21 +1,9 @@
 <?php
-// Include your database connection file here
-$servername = "localhost";
-$username = "root"; // Your database username
-$password = ""; // Your database password
-$dbname = "webcaredb";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include("connection.php");
+session_start();
 // Fetch admin username
 $sql = "SELECT username FROM admin WHERE adminid = 0"; // Assuming adminid = 0 is the admin
-$result = $conn->query($sql);
+$result = mysqli_query($con, $sql);
 
 $admin_username = '';
 
@@ -27,12 +15,13 @@ if ($result->num_rows > 0) {
     echo "No admin found";
 }
 
-$conn->close();
+$con->close();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Account Setting</title>
     <link rel="stylesheet" href="setting.css">
 </head>
 <body>

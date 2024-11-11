@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Responsive Admin Dashboard | CodingLab</title>
+    <title>Resource</title>
     <link rel="stylesheet" href="mresources.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   </head>
@@ -15,7 +15,7 @@
         <li>
           <a href="dashboard.php">
             <i class='bx bxs-dashboard'></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Home</span>
           </a>
         </li>
         <li>

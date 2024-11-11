@@ -6,9 +6,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'C:\xampp\htdocs\webcare\PHPMailer\src\Exception.php';
-require 'C:\xampp\htdocs\webcare\PHPMailer\src\PHPMailer.php';
-require 'C:\xampp\htdocs\webcare\PHPMailer\src\SMTP.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 function sendemail_verify($name, $email, $verify_token)
 {
@@ -34,7 +34,7 @@ function sendemail_verify($name, $email, $verify_token)
         $mail->Body    = "
             <h2>You have Registered with WebCare</h2>
             <p>Please click the following link to verify your email:</p>
-            <a href='http://localhost/webcare/verify.php?token=$verify_token'>Verify Email</a>
+            <a href='https://webcare.website/verify.php?token=$verify_token'>Verify Email</a>
         ";
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';  // Plain text alternative for non-HTML mail clients
 

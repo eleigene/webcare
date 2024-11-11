@@ -9,7 +9,7 @@
 ?>
 <html>
   <head>
-    <title> Responsiive Admin Dashboard | CodingLab </title>
+    <title>Add Article</title>
     <link rel="stylesheet" href="addarticle.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    </head>
@@ -23,7 +23,7 @@
         <li>
           <a href="dashboard.php">
             <i class='bx bxs-dashboard'></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name">Home</span>
           </a>
         </li>
         <li>
@@ -85,7 +85,7 @@
 		<input type="file" id="bfile" class="file-input" name="bfile">
 		</div>
 		<input type="submit" class="submit" name="submit" value="Add">
-		<input type="submit" class="cancel" name="cancel" value="Cancel">
+		<a href="dashboard.php"class="cancel" value="Cancel">Cancel</a>
 		</form>
 		</div>
 	</div>

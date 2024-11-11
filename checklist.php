@@ -1,3 +1,30 @@
+<?php
+include("connection.php");
+session_start();
+if (!isset($_SESSION['auth_user'])) {
+
+    exit(); // Ensure that the rest of the page does not load
+}
+if (isset($_SESSION['login_success'])) {
+
+    unset($_SESSION['login_success']);
+}
+$userID = $_SESSION['auth_user']['UserName'];
+$userid = $_SESSION['auth_user']['ID']; // Fixed typo
+
+// Fetch the logged-in user's data
+$sql1 = "SELECT * FROM user WHERE userid ='$userid'";
+$result1 = mysqli_query($con, $sql1);
+
+if ($result1 && mysqli_num_rows($result1) > 0) {
+    // Fetch the data if available
+    while ($rows = mysqli_fetch_assoc($result1)) {
+        $first1 = $rows['username'];
+        $two1 = $rows['email'];
+        $six1 = $rows['profile'];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
